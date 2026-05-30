@@ -1,0 +1,24 @@
+from music21 import stream, note, midi
+import random
+
+# Simple note dataset
+notes_data = ["C4", "E4", "G4", "A4", "F4"]
+
+# Create music stream
+music = stream.Stream()
+
+# Generate random notes
+for i in range(20):
+
+    n = random.choice(notes_data)
+
+    new_note = note.Note(n)
+
+    new_note.quarterLength = 1
+
+    music.append(new_note)
+
+# Save as MIDI
+music.write('midi', fp='generated_music.mid')
+
+print("Music Generated Successfully")
