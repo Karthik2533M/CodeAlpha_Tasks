@@ -1,1 +1,84 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FAQ Chatbot</title>
+</head>
+
+<body bgcolor="lightblue">
+
+<center>
+
+<h1>FAQ Chatbot</h1>
+
+<p>Ask a Question</p>
+
+<input type="text" id="question" size="40">
+
+<br><br>
+
+<button onclick="getAnswer()">Ask</button>
+
+<br><br>
+
+<h3>Chatbot Response:</h3>
+
+<p id="answer"></p>
+
+</center>
+
+<script>
+
+function getAnswer()
+{
+
+    var q =
+    document.getElementById("question").value;
+
+    q = q.toLowerCase();
+
+    var response = "";
+
+    // FAQ Questions and Answers
+
+    if(q.includes("hello") || q.includes("hi"))
+    {
+        response = "Hello! How can I help you?";
+    }
+
+    else if(q.includes("course"))
+    {
+        response = "We offer web development and AI courses.";
+    }
+
+    else if(q.includes("fees"))
+    {
+        response = "Course fee is 5000 rupees.";
+    }
+
+    else if(q.includes("duration"))
+    {
+        response = "Course duration is 3 months.";
+    }
+
+    else if(q.includes("certificate"))
+    {
+        response = "Yes, certificate will be provided.";
+    }
+
+    else
+    {
+        response = "Sorry, I do not understand.";
+    }
+
+    document.getElementById("answer").innerHTML =
+    response;
+
+}
+
+</script>
+
+</body>
+
+</html>
