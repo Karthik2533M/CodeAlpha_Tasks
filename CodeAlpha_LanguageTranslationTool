@@ -1,1 +1,98 @@
 
+
+    <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Language Translation Tool</title>
+</head>
+
+<body>
+
+    <h2>Language Translation Tool</h2>
+
+    <!-- Input Text -->
+    <textarea id="inputText" rows="5" cols="40"
+    placeholder="Enter text"></textarea>
+
+    <br><br>
+
+    <!-- Source Language -->
+    <label>Source Language:</label>
+
+    <select id="sourceLang">
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+        <option value="hi">Hindi</option>
+    </select>
+
+    <br><br>
+
+    <!-- Target Language -->
+    <label>Target Language:</label>
+
+    <select id="targetLang">
+        <option value="te">Telugu</option>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+    </select>
+
+    <br><br>
+
+    <!-- Translate Button -->
+    <button onclick="translateText()">Translate</button>
+
+    <!-- Copy Button -->
+    <button onclick="copyText()">Copy</button>
+
+    <br><br>
+
+    <!-- Output -->
+    <h3>Translated Text:</h3>
+
+    <p id="output"></p>
+
+<script>
+
+async function translateText() {
+
+    // Get text
+    let text = document.getElementById("inputText").value;
+
+    // Get source language
+    let source = document.getElementById("sourceLang").value;
+
+    // Get target language
+    let target = document.getElementById("targetLang").value;
+
+    // API Request
+    let response = await fetch(
+        "https://api.mymemory.translated.net/get?q="
+        + text +
+        "&langpair=" + source + "|" + target
+    );
+
+    // Convert response to JSON
+    let data = await response.json();
+
+    // Display translated text
+    document.getElementById("output").innerHTML =
+        data.responseData.translatedText;
+}
+
+function copyText() {
+
+    // Get translated text
+    let text =
+    document.getElementById("output").innerText;
+
+    // Copy text
+    navigator.clipboard.writeText(text);
+
+    alert("Copied Successfully!");
+}
+
+</script>
+
+</body>
+</html>
